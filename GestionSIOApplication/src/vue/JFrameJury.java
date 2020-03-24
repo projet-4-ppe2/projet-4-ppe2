@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package vue;
+
+import javax.swing.JTable;
 
 /**
  *
  * @author maxen
  */
-public class JFrameStage extends javax.swing.JFrame {
+public class JFrameJury extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameEtudiant
      */
-    public JFrameStage() {
+    public JFrameJury() {
         initComponents();
     }
 
@@ -77,7 +79,7 @@ public class JFrameStage extends javax.swing.JFrame {
         });
 
         jLabelEtudiant.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelEtudiant.setText("Stage disponible");
+        jLabelEtudiant.setText("Jury");
 
         jButtonCreer.setText("Creer");
         jButtonCreer.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +103,7 @@ public class JFrameStage extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nom", "Entreprise", "Etudiant", "Date"
             }
         ));
         jScrollPane3.setViewportView(jTableRecherche);
@@ -125,7 +127,7 @@ public class JFrameStage extends javax.swing.JFrame {
                 .addComponent(jButtonRetour)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelEtudiant)
-                .addGap(59, 59, 59))
+                .addGap(135, 135, 135))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +204,10 @@ public class JFrameStage extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public JTable getjTableListeJury() {
+        return jTableRecherche;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreer;

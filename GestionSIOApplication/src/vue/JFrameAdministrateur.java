@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package vue;
 
 /**
  *
@@ -77,7 +77,7 @@ public class JFrameAdministrateur extends javax.swing.JFrame {
         });
 
         jLabelEtudiant.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelEtudiant.setText("Jury");
+        jLabelEtudiant.setText("Administrateur");
 
         jButtonCreer.setText("Creer");
         jButtonCreer.addActionListener(new java.awt.event.ActionListener() {

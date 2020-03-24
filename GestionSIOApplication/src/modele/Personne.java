@@ -26,15 +26,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "personne")
 @NamedQueries({
-    @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne p"),
-    @NamedQuery(name = "Personne.findById", query = "SELECT p FROM Personne p WHERE p.id = :id"),
-    @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom"),
-    @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom"),
-    @NamedQuery(name = "Personne.findByEmail", query = "SELECT p FROM Personne p WHERE p.email = :email"),
-    @NamedQuery(name = "Personne.findByTelephone", query = "SELECT p FROM Personne p WHERE p.telephone = :telephone"),
-    @NamedQuery(name = "Personne.findByCivilite", query = "SELECT p FROM Personne p WHERE p.civilite = :civilite"),
-    @NamedQuery(name = "Personne.findByVille", query = "SELECT p FROM Personne p WHERE p.ville = :ville"),
-    @NamedQuery(name = "Personne.findByAdresse", query = "SELECT p FROM Personne p WHERE p.adresse = :adresse"),
+    @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne p")
+    ,
+    @NamedQuery(name = "Personne.findById", query = "SELECT p FROM Personne p WHERE p.id = :id")
+    ,
+    @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom")
+    ,
+    @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom")
+    ,
+    @NamedQuery(name = "Personne.findByEmail", query = "SELECT p FROM Personne p WHERE p.email = :email")
+    ,
+    @NamedQuery(name = "Personne.findByTelephone", query = "SELECT p FROM Personne p WHERE p.telephone = :telephone")
+    ,
+    @NamedQuery(name = "Personne.findByCivilite", query = "SELECT p FROM Personne p WHERE p.civilite = :civilite")
+    ,
+    @NamedQuery(name = "Personne.findByVille", query = "SELECT p FROM Personne p WHERE p.ville = :ville")
+    ,
+    @NamedQuery(name = "Personne.findByAdresse", query = "SELECT p FROM Personne p WHERE p.adresse = :adresse")
+    ,
     @NamedQuery(name = "Personne.findByCodePostal", query = "SELECT p FROM Personne p WHERE p.codePostal = :codePostal")})
 public class Personne implements Serializable {
 
@@ -224,5 +233,5 @@ public class Personne implements Serializable {
     public String toString() {
         return "Classes.Personne[ id=" + id + " ]";
     }
-    
+
 }

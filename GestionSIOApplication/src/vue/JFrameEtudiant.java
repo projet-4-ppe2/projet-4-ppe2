@@ -3,19 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package vue;
+
+import modele.Etudiant;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.swing.JTable;
 
 /**
  *
  * @author maxen
  */
-public class JFrameJury extends javax.swing.JFrame {
+public class JFrameEtudiant extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameEtudiant
      */
-    public JFrameJury() {
+    public JFrameEtudiant() {
+        
         initComponents();
+       
     }
 
     /**
@@ -36,8 +45,8 @@ public class JFrameJury extends javax.swing.JFrame {
         jLabelEtudiant = new javax.swing.JLabel();
         jButtonCreer = new javax.swing.JButton();
         jButtonValider = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableRecherche = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableTableau = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -77,7 +86,7 @@ public class JFrameJury extends javax.swing.JFrame {
         });
 
         jLabelEtudiant.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelEtudiant.setText("Jury");
+        jLabelEtudiant.setText("Etudiant");
 
         jButtonCreer.setText("Creer");
         jButtonCreer.addActionListener(new java.awt.event.ActionListener() {
@@ -93,39 +102,40 @@ public class JFrameJury extends javax.swing.JFrame {
             }
         });
 
-        jTableRecherche.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTableau.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Cysboy", "28 ans", "1.80 m"},
+                {"BZHHydde", "28 ans", "1.80 m"},
+                {"IamBow", "24 ans", "1.90 m"},
+                {"FunMan", "32 ans", "1.85 m"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Pseudo", "Age", "Taille"
             }
         ));
-        jScrollPane3.setViewportView(jTableRecherche);
+        jScrollPane4.setViewportView(jTableTableau);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jButtonCreer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonValider)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonRetour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelEtudiant))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jButtonCreer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addComponent(jButtonValider)))
                 .addGap(93, 93, 93))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButtonRetour)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelEtudiant)
-                .addGap(135, 135, 135))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,8 +148,8 @@ public class JFrameJury extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonValider)
                     .addComponent(jButtonCreer))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -155,8 +165,8 @@ public class JFrameJury extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
-        JFrameProfesseur JFrameP = new JFrameProfesseur();
-        JFrameP.setVisible(true);
+        JFrameAccueil JFrameA = new JFrameAccueil();
+        JFrameA.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.dispose();    }//GEN-LAST:event_jButtonRetourActionPerformed
@@ -202,6 +212,10 @@ public class JFrameJury extends javax.swing.JFrame {
             }
         });
     }
+    
+    public JTable getjTableListeEtudiants() {
+        return jTableTableau;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreer;
@@ -211,9 +225,9 @@ public class JFrameJury extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEtudiant;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTableRecherche;
+    private javax.swing.JTable jTableTableau;
     // End of variables declaration//GEN-END:variables
 }
