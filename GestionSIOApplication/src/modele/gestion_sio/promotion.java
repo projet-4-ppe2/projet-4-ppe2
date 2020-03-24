@@ -1,4 +1,4 @@
-package Classes;
+package modele.gestion_sio;
 
 
 public class promotion {

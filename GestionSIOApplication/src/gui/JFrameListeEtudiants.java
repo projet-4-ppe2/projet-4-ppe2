@@ -5,7 +5,7 @@
  */
 package gui;
 
-import Classes.Etudiant;
+import modele.gestion_sio.Etudiant;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,21 +15,26 @@ import javax.persistence.Query;
  *
  * @author maxen
  */
-public class JFrameEtudiant extends javax.swing.JFrame {
+public class JFrameListeEtudiants extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameEtudiant
      */
-    public JFrameEtudiant() {
+    public JFrameListeEtudiants() {
         initComponents();
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionSIOApplicationPU");
-        EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("select e from Etudiant e");
-        Etudiant etudiants = (Etudiant) query.getSingleResult();
-        em.close();
-        emf.close();
+       jTableListeEtudiants.setModel(new ModeleTableListeEtudiants());
+
     }
+    
+    public Object getjTableListeEtudiants() {
+        return jTableListeEtudiants;
+    }
+    
+    public ModeleTableListeEtudiants getModeleTableListeEtudiants() {
+        return (ModeleTableListeEtudiants)this.jTableListeEtudiants.getModel();
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +55,7 @@ public class JFrameEtudiant extends javax.swing.JFrame {
         jButtonCreer = new javax.swing.JButton();
         jButtonValider = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTableTableau = new javax.swing.JTable();
+        jTableListeEtudiants = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -106,7 +111,7 @@ public class JFrameEtudiant extends javax.swing.JFrame {
             }
         });
 
-        jTableTableau.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListeEtudiants.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Cysboy", "28 ans", "1.80 m"},
                 {"BZHHydde", "28 ans", "1.80 m"},
@@ -117,7 +122,7 @@ public class JFrameEtudiant extends javax.swing.JFrame {
                 "Pseudo", "Age", "Taille"
             }
         ));
-        jScrollPane4.setViewportView(jTableTableau);
+        jScrollPane4.setViewportView(jTableListeEtudiants);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,40 +184,10 @@ public class JFrameEtudiant extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameEtudiant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameEtudiant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameEtudiant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameEtudiant.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameEtudiant().setVisible(true);
+                new JFrameListeEtudiants().setVisible(true);
             }
         });
     }
@@ -228,6 +203,8 @@ public class JFrameEtudiant extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTableTableau;
+    private javax.swing.JTable jTableListeEtudiants;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package modele.gestion_sio;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,13 +24,13 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "professionnel")
+@Table(name = "organisation")
 @NamedQueries({
-    @NamedQuery(name = "Professionnel.findAll", query = "SELECT p FROM Professionnel p"),
-    @NamedQuery(name = "Professionnel.findById", query = "SELECT p FROM Professionnel p WHERE p.id = :id"),
-    @NamedQuery(name = "Professionnel.findByAncienEleve", query = "SELECT p FROM Professionnel p WHERE p.ancienEleve = :ancienEleve"),
-    @NamedQuery(name = "Professionnel.findByFonction", query = "SELECT p FROM Professionnel p WHERE p.fonction = :fonction")})
-public class Professionnel implements Serializable {
+    @NamedQuery(name = "Organisation.findAll", query = "SELECT o FROM Organisation o"),
+    @NamedQuery(name = "Organisation.findById", query = "SELECT o FROM Organisation o WHERE o.id = :id"),
+    @NamedQuery(name = "Organisation.findByNom", query = "SELECT o FROM Organisation o WHERE o.nom = :nom"),
+    @NamedQuery(name = "Organisation.findByAdresse", query = "SELECT o FROM Organisation o WHERE o.adresse = :adresse")})
+public class Organisation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,28 +39,25 @@ public class Professionnel implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "ancien_eleve")
-    private boolean ancienEleve;
+    @Column(name = "nom")
+    private String nom;
     @Basic(optional = false)
-    @Column(name = "fonction")
-    private String fonction;
-    @JoinColumn(name = "id_personne", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Personne idPersonne;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfessionnel")
+    @Column(name = "adresse")
+    private String adresse;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrganisation")
     private Collection<Stage> stageCollection;
 
-    public Professionnel() {
+    public Organisation() {
     }
 
-    public Professionnel(Integer id) {
+    public Organisation(Integer id) {
         this.id = id;
     }
 
-    public Professionnel(Integer id, boolean ancienEleve, String fonction) {
+    public Organisation(Integer id, String nom, String adresse) {
         this.id = id;
-        this.ancienEleve = ancienEleve;
-        this.fonction = fonction;
+        this.nom = nom;
+        this.adresse = adresse;
     }
 
     public Integer getId() {
@@ -73,28 +68,20 @@ public class Professionnel implements Serializable {
         this.id = id;
     }
 
-    public boolean getAncienEleve() {
-        return ancienEleve;
+    public String getNom() {
+        return nom;
     }
 
-    public void setAncienEleve(boolean ancienEleve) {
-        this.ancienEleve = ancienEleve;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getFonction() {
-        return fonction;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setFonction(String fonction) {
-        this.fonction = fonction;
-    }
-
-    public Personne getIdPersonne() {
-        return idPersonne;
-    }
-
-    public void setIdPersonne(Personne idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public Collection<Stage> getStageCollection() {
@@ -115,10 +102,10 @@ public class Professionnel implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Professionnel)) {
+        if (!(object instanceof Organisation)) {
             return false;
         }
-        Professionnel other = (Professionnel) object;
+        Organisation other = (Organisation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -127,7 +114,7 @@ public class Professionnel implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Professionnel[ id=" + id + " ]";
+        return "Classes.Organisation[ id=" + id + " ]";
     }
     
 }
