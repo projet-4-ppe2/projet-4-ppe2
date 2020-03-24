@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/S:/Cours/2eme%20année/Semestre%203/PPE/PPE2/GestionSIOApplication/src/Fenetre.java</file>
-            <file>file:/S:/Cours/2eme%20année/Semestre%203/PPE/PPE2/GestionSIOApplication/src/Main.java</file>
+            <file>file:/S:/Cours/2eme%20année/Semestre%203/PPE/PPE2/GestionSIOApplication/src/META-INF/persistence.xml</file>
+            <file>file:/S:/Cours/2eme%20année/Semestre%203/PPE/PPE2/GestionSIOApplication/src/gui/JFrameEtudiant.java</file>
+            <file>file:/S:/Cours/2eme%20année/Semestre%203/PPE/PPE2/GestionSIOApplication/src/Classes/Etudiant.java</file>
+            <file>file:/S:/Cours/2eme%20année/Semestre%203/PPE/PPE2/GestionSIOApplication/src/Classes/Personne.java</file>
         </group>
     </open-files>
 </project-private>

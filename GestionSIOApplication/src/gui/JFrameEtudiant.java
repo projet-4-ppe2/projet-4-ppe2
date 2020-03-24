@@ -5,6 +5,12 @@
  */
 package gui;
 
+import Classes.Etudiant;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 /**
  *
  * @author maxen
@@ -16,6 +22,13 @@ public class JFrameEtudiant extends javax.swing.JFrame {
      */
     public JFrameEtudiant() {
         initComponents();
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionSIOApplicationPU");
+        EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("select e from Etudiant e");
+        Etudiant etudiants = (Etudiant) query.getSingleResult();
+        em.close();
+        emf.close();
     }
 
     /**
@@ -36,8 +49,8 @@ public class JFrameEtudiant extends javax.swing.JFrame {
         jLabelEtudiant = new javax.swing.JLabel();
         jButtonCreer = new javax.swing.JButton();
         jButtonValider = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableRecherche = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableTableau = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -93,27 +106,23 @@ public class JFrameEtudiant extends javax.swing.JFrame {
             }
         });
 
-        jTableRecherche.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTableau.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Cysboy", "28 ans", "1.80 m"},
+                {"BZHHydde", "28 ans", "1.80 m"},
+                {"IamBow", "24 ans", "1.90 m"},
+                {"FunMan", "32 ans", "1.85 m"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Pseudo", "Age", "Taille"
             }
         ));
-        jScrollPane3.setViewportView(jTableRecherche);
+        jScrollPane4.setViewportView(jTableTableau);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -124,9 +133,13 @@ public class JFrameEtudiant extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jButtonCreer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                         .addComponent(jButtonValider)))
                 .addGap(93, 93, 93))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,8 +152,8 @@ public class JFrameEtudiant extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonValider)
                     .addComponent(jButtonCreer))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -212,9 +225,9 @@ public class JFrameEtudiant extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEtudiant;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTableRecherche;
+    private javax.swing.JTable jTableTableau;
     // End of variables declaration//GEN-END:variables
 }
