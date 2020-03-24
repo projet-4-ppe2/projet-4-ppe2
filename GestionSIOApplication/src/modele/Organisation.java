@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package modele;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,11 +24,13 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "professeur")
+@Table(name = "organisation")
 @NamedQueries({
-    @NamedQuery(name = "Professeur.findAll", query = "SELECT p FROM Professeur p"),
-    @NamedQuery(name = "Professeur.findById", query = "SELECT p FROM Professeur p WHERE p.id = :id")})
-public class Professeur implements Serializable {
+    @NamedQuery(name = "Organisation.findAll", query = "SELECT o FROM Organisation o"),
+    @NamedQuery(name = "Organisation.findById", query = "SELECT o FROM Organisation o WHERE o.id = :id"),
+    @NamedQuery(name = "Organisation.findByNom", query = "SELECT o FROM Organisation o WHERE o.nom = :nom"),
+    @NamedQuery(name = "Organisation.findByAdresse", query = "SELECT o FROM Organisation o WHERE o.adresse = :adresse")})
+public class Organisation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,17 +38,26 @@ public class Professeur implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesseur")
-    private Collection<Visite> visiteCollection;
-    @JoinColumn(name = "id_personne", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Personne idPersonne;
+    @Basic(optional = false)
+    @Column(name = "nom")
+    private String nom;
+    @Basic(optional = false)
+    @Column(name = "adresse")
+    private String adresse;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrganisation")
+    private Collection<Stage> stageCollection;
 
-    public Professeur() {
+    public Organisation() {
     }
 
-    public Professeur(Integer id) {
+    public Organisation(Integer id) {
         this.id = id;
+    }
+
+    public Organisation(Integer id, String nom, String adresse) {
+        this.id = id;
+        this.nom = nom;
+        this.adresse = adresse;
     }
 
     public Integer getId() {
@@ -59,20 +68,28 @@ public class Professeur implements Serializable {
         this.id = id;
     }
 
-    public Collection<Visite> getVisiteCollection() {
-        return visiteCollection;
+    public String getNom() {
+        return nom;
     }
 
-    public void setVisiteCollection(Collection<Visite> visiteCollection) {
-        this.visiteCollection = visiteCollection;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public Personne getIdPersonne() {
-        return idPersonne;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setIdPersonne(Personne idPersonne) {
-        this.idPersonne = idPersonne;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public Collection<Stage> getStageCollection() {
+        return stageCollection;
+    }
+
+    public void setStageCollection(Collection<Stage> stageCollection) {
+        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -85,10 +102,10 @@ public class Professeur implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Professeur)) {
+        if (!(object instanceof Organisation)) {
             return false;
         }
-        Professeur other = (Professeur) object;
+        Organisation other = (Organisation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -97,7 +114,7 @@ public class Professeur implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Professeur[ id=" + id + " ]";
+        return "Classes.Organisation[ id=" + id + " ]";
     }
     
 }

@@ -5,7 +5,7 @@
  */
 package gui;
 
-import Classes.Etudiant;
+import modele.Etudiant;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,14 +21,9 @@ public class JFrameEtudiant extends javax.swing.JFrame {
      * Creates new form JFrameEtudiant
      */
     public JFrameEtudiant() {
-        initComponents();
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionSIOApplicationPU");
-        EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("select e from Etudiant e");
-        Etudiant etudiants = (Etudiant) query.getSingleResult();
-        em.close();
-        emf.close();
+        initComponents();
+       
     }
 
     /**

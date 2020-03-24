@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package modele;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -24,13 +24,12 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "organisation")
+@Table(name = "option")
 @NamedQueries({
-    @NamedQuery(name = "Organisation.findAll", query = "SELECT o FROM Organisation o"),
-    @NamedQuery(name = "Organisation.findById", query = "SELECT o FROM Organisation o WHERE o.id = :id"),
-    @NamedQuery(name = "Organisation.findByNom", query = "SELECT o FROM Organisation o WHERE o.nom = :nom"),
-    @NamedQuery(name = "Organisation.findByAdresse", query = "SELECT o FROM Organisation o WHERE o.adresse = :adresse")})
-public class Organisation implements Serializable {
+    @NamedQuery(name = "Option.findAll", query = "SELECT o FROM Option o"),
+    @NamedQuery(name = "Option.findById", query = "SELECT o FROM Option o WHERE o.id = :id"),
+    @NamedQuery(name = "Option.findByLibelle", query = "SELECT o FROM Option o WHERE o.libelle = :libelle")})
+public class Option implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,25 +38,21 @@ public class Organisation implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "nom")
-    private String nom;
-    @Basic(optional = false)
-    @Column(name = "adresse")
-    private String adresse;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrganisation")
-    private Collection<Stage> stageCollection;
+    @Column(name = "libelle")
+    private String libelle;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOption")
+    private Collection<Etudiant> etudiantCollection;
 
-    public Organisation() {
+    public Option() {
     }
 
-    public Organisation(Integer id) {
+    public Option(Integer id) {
         this.id = id;
     }
 
-    public Organisation(Integer id, String nom, String adresse) {
+    public Option(Integer id, String libelle) {
         this.id = id;
-        this.nom = nom;
-        this.adresse = adresse;
+        this.libelle = libelle;
     }
 
     public Integer getId() {
@@ -68,28 +63,20 @@ public class Organisation implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public Collection<Etudiant> getEtudiantCollection() {
+        return etudiantCollection;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public Collection<Stage> getStageCollection() {
-        return stageCollection;
-    }
-
-    public void setStageCollection(Collection<Stage> stageCollection) {
-        this.stageCollection = stageCollection;
+    public void setEtudiantCollection(Collection<Etudiant> etudiantCollection) {
+        this.etudiantCollection = etudiantCollection;
     }
 
     @Override
@@ -102,10 +89,10 @@ public class Organisation implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Organisation)) {
+        if (!(object instanceof Option)) {
             return false;
         }
-        Organisation other = (Organisation) object;
+        Option other = (Option) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +101,7 @@ public class Organisation implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Organisation[ id=" + id + " ]";
+        return "Classes.Option[ id=" + id + " ]";
     }
     
 }
