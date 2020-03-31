@@ -23,12 +23,12 @@ import modele.dao.DaoStage;
  *
  * @author Justine
  */
-public class CtrlListeStages implements WindowListener, ActionListener {
+public class CtrlStage implements WindowListener, ActionListener {
     
     private JFrameStage vue;         // LA VUE
     private CtrlPrincipal ctrlPrincipal;
 
-    public CtrlListeStages(JFrameStage vue, CtrlPrincipal ctrl) {
+    public CtrlStage(JFrameStage vue, CtrlPrincipal ctrl) {
         this.vue = vue;
         this.ctrlPrincipal = ctrl;
         // le contrôleur écoute la vue

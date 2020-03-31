@@ -10,13 +10,13 @@ import gui.JFrameListeEtudiants;
  * @author N. Bourgeois
  * @version nov 2019
  */
-public class CtrlListeEtudiants implements WindowListener, ActionListener, MouseListener {
+public class CtrlEtudiants implements WindowListener, ActionListener, MouseListener {
 
     private JFrameListeEtudiants vue;         // LA VUE
     private CtrlPrincipal ctrlPrincipal;
     private List<Etudiant> lesEtudiants;        // La liste des clients à afficher
 
-    public CtrlListeEtudiants(JFrameListeEtudiants vue, CtrlPrincipal ctrl) {
+    public CtrlEtudiants(JFrameListeEtudiants vue, CtrlPrincipal ctrl) {
         this.vue = vue;
         this.ctrlPrincipal = ctrl;
         // le contrôleur écoute la vue
