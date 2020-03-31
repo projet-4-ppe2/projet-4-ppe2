@@ -17,54 +17,47 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import vue.JFrameJury;
 import modele.metier.Visite;
-import modele.dao.DaoJury;
+import modele.dao.DaoVisite;
 
 /**
  *
  * @author MrE1
  */
-public class CtrlListeJury implements WindowListener, ActionListener, MouseListener {
+public class CtrlVisite implements WindowListener, ActionListener {
 
     private JFrameJury vue;         // LA VUE
     private CtrlPrincipal ctrlPrincipal;
     private List<Visite> lesJurys;        // La liste des clients à afficher
 
-    public CtrlListeJury(JFrameJury vue, CtrlPrincipal ctrl) {
+    public CtrlVisite(JFrameJury vue, CtrlPrincipal ctrl) {
         this.vue = vue;
         this.ctrlPrincipal = ctrl;
         // le contrôleur écoute la vue
         this.vue.addWindowListener(this);
+        afficherLeJury();
     }
 
     /**
      * Remplit le modèle de JTable de la vue avec les données provenant de la
      * liste des clients
      */
-    public void afficherLeJury() {
+    public final void afficherLeJury() {
         // Affichage de la liste des clients
-        List<Visite> lesJurys = null;
-        try {
-            String str_nom = null;
-            String str_stg1 = null;
-            String str_stg2 = null;
+        List<Visite> lesVisites = null;
 
-            lesJurys = DaoJury.selectAll();
+        String str_nom = "test";
+        String str_stg1 = "test";
+        String str_stg2 = "test";
+        try {
+
+            lesVisites = DaoVisite.selectAll();
             getVue().getModeleTableJurys().setRowCount(0);
             String[] titresColonnes = {"Nom", "Entreprise", "Etudiant", "Date"};
             getVue().getModeleTableJurys().setColumnIdentifiers(titresColonnes);
             String[] ligneDonnees = new String[4];
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-            for (Visite unJury : lesJurys) {
-                if (unJury.getJury() == true) {
-                    str_nom = "1";
-                }
-                if (unJury.getStage1() == true) {
-                    str_stg1 = "1";
-                }
-                if (unJury.getStage2() == true) {
-                    str_stg2 = "1";
-                }
+            for (Visite unJury : lesVisites) {
                 ligneDonnees[0] = str_nom;
                 ligneDonnees[1] = str_stg1;
                 ligneDonnees[2] = str_stg2;
@@ -72,7 +65,7 @@ public class CtrlListeJury implements WindowListener, ActionListener, MouseListe
                 getVue().getModeleTableJurys().addRow(ligneDonnees);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(getVue(), "CtrlListeJury - échec de sélection des jurys");
+            JOptionPane.showMessageDialog(getVue(), "CtrlJury - échec de sélection des jurys");
         }
 
     }
@@ -80,10 +73,14 @@ public class CtrlListeJury implements WindowListener, ActionListener, MouseListe
     @Override
     public void windowOpened(WindowEvent e) {
     }
+    
+    private void quitter() {
+        ctrlPrincipal.quitterApplication();
+    }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        ctrlPrincipal.quitterApplication(this.vue);
+        quitter();
     }
 
     @Override
@@ -108,26 +105,6 @@ public class CtrlListeJury implements WindowListener, ActionListener, MouseListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 
     // ACCESSEURS et MUTATEURS

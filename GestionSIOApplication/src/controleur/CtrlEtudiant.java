@@ -12,17 +12,18 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import vue.JFrameEtudiant;
+import vue.JFrameJury;
 
 /**
  *
  * @author Alexandre
  */
-public class CtrlListeEtudiants implements WindowListener, ActionListener, MouseListener  {
+public class CtrlEtudiant implements WindowListener, ActionListener, MouseListener  {
 
     private JFrameEtudiant vue;         // LA VUE
     private CtrlPrincipal ctrlPrincipal;
     
-    public CtrlListeEtudiants(JFrameEtudiant vue, CtrlPrincipal ctrl) {
+    public CtrlEtudiant(JFrameEtudiant vue, CtrlPrincipal ctrl) {
         this.vue = vue;
         this.ctrlPrincipal = ctrl;
         // le contrôleur écoute la vue
@@ -80,6 +81,23 @@ public class CtrlListeEtudiants implements WindowListener, ActionListener, Mouse
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+    
+    // ACCESSEURS et MUTATEURS
+    public JFrameEtudiant getVue() {
+        return vue;
+    }
+
+    public void setVue(JFrameEtudiant vue) {
+        this.vue = vue;
+    }
+
+    public CtrlPrincipal getCtrlPrincipal() {
+        return ctrlPrincipal;
+    }
+
+    public void setCtrlPrincipal(CtrlPrincipal ctrlPrincipal) {
+        this.ctrlPrincipal = ctrlPrincipal;
     }
 
 }

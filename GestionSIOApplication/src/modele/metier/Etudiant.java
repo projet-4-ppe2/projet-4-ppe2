@@ -30,8 +30,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "etudiant")
 @NamedQueries({
-    @NamedQuery(name = "Etudiant.findAll", query = "SELECT e FROM Etudiant e"),
-    @NamedQuery(name = "Etudiant.findById", query = "SELECT e FROM Etudiant e WHERE e.id = :id"),
+    @NamedQuery(name = "Etudiant.findAll", query = "SELECT e FROM Etudiant e")
+    ,
+    @NamedQuery(name = "Etudiant.findById", query = "SELECT e FROM Etudiant e WHERE e.id = :id")
+    ,
     @NamedQuery(name = "Etudiant.findByIdStage", query = "SELECT e FROM Etudiant e WHERE e.idStage = :idStage")})
 public class Etudiant implements Serializable {
 
@@ -153,5 +155,5 @@ public class Etudiant implements Serializable {
     public String toString() {
         return "Classes.Etudiant[ id=" + id + " ]";
     }
-    
+
 }

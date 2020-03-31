@@ -18,7 +18,30 @@ import modele.metier.Visite;
  *
  * @author MrE1
  */
-public class DaoJury {
+public class DaoVisite {
+    
+    /**
+     * selectOne : lire un enregistrement dans la table CLIENT
+     *
+     * @param numClient : identifiant conceptuel du client recherché
+     * @return une instance de la classe Adresse
+     * @throws SQLException
+     */
+    public static Visite selectOne(int numVisite) throws SQLException {
+        Visite uneVisite = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "SELECT * FROM VISITE WHERE ID= ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, numVisite);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            uneVisite = DaoVisite.juryFromResultSet(rs);
+        }
+        return uneVisite;
+    }
 
     /**
      * lire tous les enregistrements de la table CLIENT
@@ -27,20 +50,20 @@ public class DaoJury {
      * @throws SQLException
      */
     public static List<Visite> selectAll() throws SQLException {
-        List<Visite> lesJurys = new ArrayList<Visite>();
-        Visite unJury = null;
+        List<Visite> lesVisites = new ArrayList<Visite>();
+        Visite uneVisite = null;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Visite";
+        String requete = "SELECT * FROM VISITE";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            unJury = DaoJury.juryFromResultSet(rs);
-            lesJurys.add(unJury);
+            uneVisite = DaoVisite.juryFromResultSet(rs);
+            lesVisites.add(uneVisite);
         }
-        return lesJurys;
+        return lesVisites;
     }
 
     /**
@@ -53,14 +76,14 @@ public class DaoJury {
      */
     private static Visite juryFromResultSet(ResultSet rs) throws SQLException {
         Visite vis = null;
-        int numJury = rs.getInt("NUMJURY"); //id
+        int numJury = rs.getInt("ID"); //id
         int idStage = rs.getInt("ID_STAGE"); //id_stage
         int idProf = rs.getInt("ID_PROFESSEUR"); //id_professeur
-        java.sql.Date datestage = rs.getDate("DATEDESTAGE"); //date
+        java.sql.Date datestage = rs.getDate("DATE"); //date
         boolean jry = rs.getBoolean("JURY"); //jury
         boolean stg1 = rs.getBoolean("STAGE1"); //stage1
         boolean stg2 = rs.getBoolean("STAGE2"); //stage2
-        vis = new Visite(numJury, DaoJury.toUtilDate(datestage), jry, stg1, stg2);
+        vis = new Visite(numJury, DaoVisite.toUtilDate(datestage), jry, stg1, stg2);
         Stage stg = DaoStage.selectOne(idStage);
         Professeur prf = DaoProf.selectOne(idProf);
         vis.setIdStage(stg);

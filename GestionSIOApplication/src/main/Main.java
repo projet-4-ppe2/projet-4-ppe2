@@ -1,45 +1,41 @@
 package main;
 
-import controleur.CtrlListeJury;
+import controleur.CtrlVisite;
 import controleur.CtrlPrincipal;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import modele.metier.Visite;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import modele.dao.Jdbc;
 import vue.JFrameJury;
+import vue.JFrameAccueil;
 
 
 public class Main {
 
-    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        
-        CtrlPrincipal leControleurPrincipal;
-        JFrameJury vueListeJury;
-        CtrlListeJury leControleurListeJury;
-        
-        EntityManager em;
-        Query query;
-        List<Visite> desJurys;
-        
-        // PREPARATION DES DONNEES
-        em = Persistence.createEntityManagerFactory("GestionSIOApplicationPU").createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        
-        Query req = em.createQuery("SELECT v FROM VISITE v ");
-        desJurys = (List<Visite>) req.getResultList();
+//        Jdbc.creer("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:", "@localhost:1521:XE", "", "btssio", "btssio");
+        Jdbc.creer("jdbc:mysql:", "//localhost/", "GESTION_SIO", "gestion_sio_user", "secret");
+        try {
+            Jdbc.getInstance().connecter();
+            CtrlPrincipal leControleurPrincipal = new CtrlPrincipal();
+            
+            JFrameAccueil VueAccueil = new JFrameAccueil();
 
-        // Instanciation des contrôleurs et de la vue 
-        leControleurPrincipal = new CtrlPrincipal();
-        leControleurPrincipal.setEntityManager(em);
-        
-        //  1- liste des Jurys
-        vueListeJury = new JFrameJury();
-        leControleurListeJury = new CtrlListeJury(vueListeJury, leControleurPrincipal);
-        leControleurPrincipal.setCtrlListeJury(leControleurListeJury);
+            // instanciation contrôleur et vue sur la liste des jurys
+            JFrameJury laVueLesJurys = new JFrameJury();
+            CtrlVisite leControleurLesJurys = new CtrlVisite(laVueLesJurys, leControleurPrincipal);
+            leControleurPrincipal.setCtrlJury(leControleurLesJurys);
+
+            // afficher la vue initiale
+            VueAccueil.setVisible(true);
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Main - échec de connexion");
+        }
 
     }
 }

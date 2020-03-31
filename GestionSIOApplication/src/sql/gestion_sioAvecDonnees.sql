@@ -62,40 +62,18 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_personne` int(11) NOT NULL,
   `id_stage` int(11) DEFAULT NULL,
   `id_annee` int(11) NOT NULL,
-  `id_option` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  KEY `fk_stage` (`id_stage`),
   KEY `fk_personne` (`id_personne`),
-  KEY `fk_annee` (`id_annee`),
-  KEY `fk_option` (`id_option`)
+  KEY `fk_annee` (`id_annee`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`id`, `id_personne`, `id_stage`, `id_annee`, `id_option`) VALUES
-(1, 1, 1, 2, 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `option`
---
-
-DROP TABLE IF EXISTS `option`;
-CREATE TABLE IF NOT EXISTS `option` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `option`
---
-
-INSERT INTO `option` (`id`, `libelle`) VALUES
-(1, 'SLAM'),
-(2, 'SISR');
+INSERT INTO `etudiant` (`id`, `id_personne`, `id_stage`, `id_annee`) VALUES
+(1, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -203,6 +181,7 @@ DROP TABLE IF EXISTS `promotion`;
 CREATE TABLE IF NOT EXISTS `promotion` (
   `id_etudiant` int(11) NOT NULL,
   `id_annee` int(11) NOT NULL,
+  `option` varchar(255) NOT NULL,
   KEY `fk_etudiant` (`id_etudiant`),
   KEY `fk_annee` (`id_annee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -211,8 +190,8 @@ CREATE TABLE IF NOT EXISTS `promotion` (
 -- Déchargement des données de la table `promotion`
 --
 
-INSERT INTO `promotion` (`id_etudiant`, `id_annee`) VALUES
-(1, 2);
+INSERT INTO `promotion` (`id_etudiant`, `id_annee`, `option`) VALUES
+(1, 2, 'SLAM');
 
 -- --------------------------------------------------------
 
@@ -223,7 +202,7 @@ INSERT INTO `promotion` (`id_etudiant`, `id_annee`) VALUES
 DROP TABLE IF EXISTS `stage`;
 CREATE TABLE IF NOT EXISTS `stage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_etudiant` int(11) NULL,
+  `id_etudiant` int(11) NOT NULL,
   `id_professionnel` int(11) NOT NULL,
   `id_organisation` int(11) NOT NULL,
   `debut` date NOT NULL,
@@ -240,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `stage` (
 --
 
 INSERT INTO `stage` (`id`, `id_etudiant`, `id_professionnel`, `id_organisation`, `debut`, `fin`, `sujet`) VALUES
-(1, 1, 1, 1, '2020-01-06', '2020-02-21', 'Developpement d\'une solution web');
+(1, 1, 1, 1, '2020-01-06', '2020-02-21', "Developpement d'une solution web");
 
 -- --------------------------------------------------------
 
@@ -295,8 +274,7 @@ INSERT INTO `visite` (`id`, `id_stage`, `date`, `jury`, `stage1`, `stage2`, `id_
 --
 ALTER TABLE `etudiant`
   ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id`),
-  ADD CONSTRAINT `etudiant_ibfk_2` FOREIGN KEY (`id_annee`) REFERENCES `annee` (`id`),
-  ADD CONSTRAINT `etudiant_ibfk_3` FOREIGN KEY (`id_option`) REFERENCES `option` (`id`);
+  ADD CONSTRAINT `etudiant_ibfk_2` FOREIGN KEY (`id_annee`) REFERENCES `annee` (`id`);
 
 --
 -- Contraintes pour la table `professeur`

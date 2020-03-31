@@ -1,16 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package modele.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modele.metier.Annee;
 import modele.metier.Personne;
-import modele.metier.Professeur;
 
 /**
  *
  * @author MrE1
  */
-public class DaoProf {
+class DaoAnnee {
     
     /**
      * selectOne : lire un enregistrement dans la table CLIENT
@@ -19,22 +24,22 @@ public class DaoProf {
      * @return une instance de la classe Adresse
      * @throws SQLException
      */
-    public static Professeur selectOne(int numProf) throws SQLException {
-        Professeur unProf = null;
+    public static Annee selectOne(int numAnnee) throws SQLException {
+        Annee uneAnnee = null;
         ResultSet rs = null;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM PROFESSEUR WHERE ID= ?";
+        String requete = "SELECT * FROM ANNEE WHERE ID= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, numProf);
+        pstmt.setInt(1, numAnnee);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            unProf = DaoProf.professeurFromResultSet(rs);
+            uneAnnee = DaoAnnee.anneeFromResultSet(rs);
         }
-        return unProf;
+        return uneAnnee;
     }
-    
+
     /**
      * Extrait un enregistrement du "ResultSet" issu de la table CLIENT
      *
@@ -43,23 +48,13 @@ public class DaoProf {
      * du ResultSet
      * @throws SQLException
      */
-    private static Professeur professeurFromResultSet(ResultSet rs) throws SQLException {
-        Professeur prf = null;
-        int numProf = rs.getInt("ID");
-        int idPersonne = rs.getInt("ID_PERSONNE");
-        prf = new Professeur(numProf);
-        Personne pers = DaoPersonne.selectOne(idPersonne);
-        prf.setIdPersonne(pers);
-        return prf;
+    private static Annee anneeFromResultSet(ResultSet rs) throws SQLException {
+        Annee annee = null;
+        int numAnnee = rs.getInt("ID");
+        String date_annee = rs.getString("ANNEE");
+        annee = new Annee(numAnnee,date_annee);
+        return annee;
     }
     
-    /**
-     * conversion de java.sql.Date vers java.util.Date
-     *
-     * @param uneDate java.sql.Date
-     * @return java.util.Date
-     */
-    public static java.util.Date toUtilDate(java.sql.Date uneDate) {
-        return new java.util.Date(uneDate.getTime());
-    }
+    
 }
