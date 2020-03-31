@@ -1,0 +1,135 @@
+Nom;Classe;Tuteur_etablissement;Adresse_entreprise;Tuteur_entreprise;Intitulé_stage;Début;Fin;Date_Visite;Compte-rendu
+BONTE ALEXANDRE;2BTS SLAM;BOURGEOIS NICOLAS;"BESYNC SARL
+18 RUE DU MOULIN DES LANDES
+44840 - LES SORINIERES";"CHIRI BAPTISTE
+0285526170
+baptiste@besync.fr";2 BTS SLAM;06/01/2020;22/02/2020;"24/01/2020
+(effectuée)";"Conditions : 
+TPE (3 pers.) d'infogérance dans une ptte maison ; petit open space. 
+2 stagiaires (Alexandre et Titouan). Postes de travail l'entreprise.
+Travaux :
+Maintenance d'une appli. de streaming musical ; 
+côté serveur (PHP) : API de création de client ; 
+puis côté client (tablette Androïd) création de compte.
+Outils :
+NetBeans, Androïd studio, GitLab, Trello
+Appréciations :
+
+Jury : Ok même si la période peu favorable
+Stage : Ok 2°année uniquement ; sur tests préalables"
+BOURMAUD Thomas;1BTS SERV INF ORG B;BOURGEOIS NICOLAS;"OSPHARM
+PA PORNICHET ATLANTIQUE
+2 AVENUE DU GULF STREAM
+44380 - PORNICHET
+0240536344";"DOUCHIN Alexandre
+
+adouchin@ospharm.com";1 BTS SIO;11/05/2020;20/06/2020;;
+CARSIN Pol-Aurélien;1BTS SERV INF ORG B;BOURGEOIS NICOLAS;"NEXT DECISION
+31 RUE FOURE
+44000 - NANTES
+0234093170";"PROUX Julie
+
+administratif@nextdecision.fr";1 BTS SIO;11/05/2020;20/06/2020;;
+GIRARD MATHEO;2BTS SLAM;BOURGEOIS NICOLAS;"KELCOM
+1 RUE EUGENE VARLIN
+44100 - NANTES
+0240352180";"LE ROUGE ALEXANDRE
+
+alerouge@kelcom.fr";2 BTS SLAM;06/01/2020;22/02/2020;"07/02/2020
+(effectuée)";"Conditions :
+agence de communication de 25 emp. dont 3 développeurs. Poste de développement personnel en openspace.
+Pas d'exigences méthodologiques ou de documentation.
+Travaux :
+interventions sur un outil de gestion d'une BD de produits 
+-> outil d'administration de la BD : gestion des images (Drag&Drop, réplication), référencement d'URL (.htaccess) ... bilan : terminé
+-> étude pour remplacer le SGBD par ""ElasticSearch"" pour améliorer les performances (donc l'UX) ; bilan : en cours
+Outils :
+PHPStorm (libre choix) -> Symfony, Javascript / Ajax et PHP, SSH
+ElasticSearch
+Travaille avec un serveur de test local
+Appréciation :
+
+Participation pro :
+Jury : OUI 
+Stage 1a : NON
+Stage 2a : OUI"
+LAROCHE THOMAS;2BTS SLAM;BOURGEOIS NICOLAS;"AQUASYS
+2 RUE DE NANTES
+44710 - PORT ST PERE
+0951724172";"MARTIN RIO ANTHONY
+
+anthony.martin-rio@aquasys.fr";2 BTS SLAM;06/01/2020;22/02/2020;"03/02/2020
+(effectuée)";"Conditions : 
+TPE spécialisée dans le traitement des données sur les eaux (alimentation, évacuation, niveaux, ...)
+Poste ide W individuel avec 2 écrans ; EDI sur le serveur, accès par RDP.
+Bilan : 
+amélioration backend logiciel import/export de données par web services + refonte graphique de l'appli
+Avancement normal.
+Outils :
+Java/Eclipse + JSON + Postman + Slack
+Appréciation :
+
+Stages :
+1SIO : oui ; 2SIO : oui
+Jury : oui"
+LORY Arthur;1BTS SERV INF ORG B;BOURGEOIS NICOLAS;"LAPODE SARL
+45 RUE DES GAROTTIERES
+44115 - HAUTE GOULAINE
+0240636837";"MARTIN PATRICK
+0228213353
+";1 BTS SIO;11/05/2020;20/06/2020;;
+MICHAUD VALENTIN;2BTS SLAM;BOURGEOIS NICOLAS;"Kook line
+18 RUE DE LA PLANCHONNAIS
+PORTE 26
+44980 - STE LUCE SUR LOIRE
+0240471956";"HERVO VINCENT
+
+";2 BTS SLAM;06/01/2020;22/02/2020;"14/02/2020
+(effectuée)";"Conditions :
+Agence web ~15 pers. ; openspace
++ société d'infogérance (entité séparée)
+Travaux :
+Refonte du site de KookLine (front) ;
+Templates fournis par des designers, contenus depuis back wordpress par une API (Rest) en mode asynchrone depuis VueJS (=> meilleur temps de réponse).
+Page d'accueil terminée (sauf menu, plus complexe, pas le temps) ; reste des pages à faire sur le même modèle.
+Outils :
+VueJS + API Wordpress (VueJS prend le pas sur Angular (pbs de chgts de versions) et React); 
+GitHub + EDI Laragon (? -> Laragon Full: Apache 2.4, Nginx, MySQL 5.7, PHP 7.2, Redis, Memcached, Node.js 11, npm, yarn, git,…)
+Appréciation :
+
+Opportunités :
+Jury : OUI
+Stages : OUI ; 1° ou 2°a, peu importe, il faut être passionné ; pas plus de 1 stagiaire + 1 alternant à la fois ;
+candidater sur kookline.net"
+PROUX TITOUAN;2BTS SLAM;BOURGEOIS NICOLAS;"BESYNC SARL
+18 RUE DU MOULIN DES LANDES
+44840 - LES SORINIERES";"CHIRI BAPTISTE
+0285526170
+baptiste@besync.fr";2 BTS SLAM;06/01/2020;22/02/2020;"24/01/2020
+(effectuée)";"Conditions : 
+TPE (3 pers.) d'infogérance dans une ptte maison ; petit open space. 
+2 stagiaires (Alexandre et Titouan) + 1 alternant. Postes de travail l'entreprise.
+Travaux :
+Maintenance d'une appli. de streaming musical ; 
+côté client (tablette Androïd) : débogage gestion favoris, gestion playlist.
+Outils :
+NetBeans, Androïd studio, GitLab, Trello
+Appréciations :
+
+Jury : Ok même si la période peu favorable
+Stage : Ok 2°année uniquement ; sur tests préalables"
+VINET MATHIEU;2BTS SLAM;BOURGEOIS NICOLAS;"DS SMITH PACKAGING ATLANTIQUE
+18 RUE GUSTAVE EIFFEL
+44118 - LA CHEVROLIERE
+0240021700";"LE GOFF JOSE
+
+";2 BTS SLAM;06/01/2020;22/02/2020;"24/01/2020
+(effectuée)";"Conditions : 
+Gd groupe de 25000 pers. ; serv. de ressources informatiques. Poste de travail de l'entreprise ; tuteur : chef de service. (connaissance du père, lui-même employé).
+Bilan :
+maintenance d'une appli. intranet de gestion des ""non-conformités"" : migration code VB.NET vers C# => quasiment terminé ; gestion des erreurs par try/catch + journalisation dans BDD ; maintenant, ajout de fonctionnalités.
+Outils :
+EDI (VisualStudio) directement sur serveur de test (W2012) avec ""bureau à distance"".
+Appréciation :
+
+Stage : Ok si besoin; Jury : Ok"
