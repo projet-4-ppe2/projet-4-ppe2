@@ -16,7 +16,7 @@ import gui.JFrameAdministrateur;
 import gui.JFrameListeEtudiants;
 
 import controleur.CtrlPrincipal;
-import controleur.CtrlListeEtudiants;
+import controleur.CtrlAccueil;
 
 import modele.gestion_sio.Etudiant;
 
@@ -32,33 +32,30 @@ public class Lanceur {
     public static void main(String[] args) {
        //les controleurs
         CtrlPrincipal leControleurPrincipal;
-        CtrlListeEtudiants leControleurListeEtudiants;
+        CtrlAccueil leControleurAccueil;
         //les vues
-        JFrameAccueil vueListeAccueil;
-        JFrameAdministrateur vueFicheAdministrateur;
-        JFrameListeEtudiants vueListeEtudiants;
+        JFrameAccueil vueAccueil;
 
         //Entity Manager
         EntityManager em;
         Query query;
-        List<Etudiant> desEtudiants;
 
         // PREPARATION DES DONNEES
         em = Persistence.createEntityManagerFactory("GestionSIOApplication_PU").createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
-        Query req = em.createQuery("SELECT e FROM Etudiant e ");
-        desEtudiants = (List<Etudiant>) req.getResultList();
-        
         // Instanciation des contrôleurs et de la vue 
         leControleurPrincipal = new CtrlPrincipal();
         leControleurPrincipal.setEntityManager(em);
         
-        //  1- liste des etudiants
-        vueListeEtudiants = new JFrameListeEtudiants();
-        leControleurListeEtudiants = new CtrlListeEtudiants(vueListeEtudiants, leControleurPrincipal);
-        leControleurPrincipal.setCtrlListeClients(leControleurListeEtudiants);
+        //  1- Accueil
+        vueAccueil = new JFrameAccueil();
+        leControleurAccueil = new CtrlAccueil(vueAccueil, leControleurPrincipal);
+        leControleurPrincipal.setCtrlAccueil(leControleurAccueil);
+        
+        leControleurPrincipal.afficherAccueil();        
+
     }
     
 }

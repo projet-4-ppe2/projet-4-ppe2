@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import controleur.CtrlAccueil;
 import modele.gestion_sio.Etudiant;
 
 /**
@@ -18,8 +18,8 @@ import modele.gestion_sio.Etudiant;
  */
 public class CtrlPrincipal {
 
-    CtrlListeEtudiants ctrlListeEtudiants = null;
     EntityManager entityManager = null;
+    CtrlAccueil ctrlAccueil = null;
 
     public CtrlPrincipal() {
 
@@ -33,7 +33,7 @@ public class CtrlPrincipal {
      */
     public void quitterApplication(JFrame vue) {
         // Confirmer avant de quitter
-        int rep = JOptionPane.showConfirmDialog(vue, "Quitter l'application\nEtes-vous sûr(e) ?", "AGENCEB", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int rep = JOptionPane.showConfirmDialog(vue, "Quitter l'application\nEtes-vous sûr(e) ?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (rep == JOptionPane.YES_OPTION) {
             // valider la transaction JPA
             if (entityManager != null) {
@@ -44,30 +44,15 @@ public class CtrlPrincipal {
         System.exit(0);
     }
 
-    /**
-     * Afficher la vue "Fiche liste des etudiants"
+     /**
+     * Afficher la vue "Accueil"
      *
-     * @param desEtudiants liste des clients à afficher
      */
-    public void afficherListeEtudiants(List<Etudiant> desEtudiants) {
-        ctrlListeEtudiants.setLesEtudiants(desEtudiants);
-        ctrlListeEtudiants.afficherLesEtudiants();
-        ctrlListeEtudiants.getVue().setVisible(true);
-        ctrlListeEtudiants.getVue().setEnabled(true);
-        //ctrlListeEtudiants.getVue().getjTableListeEtudiants().setEnabled(false);
+    public void afficherAccueil() {
+        // Accueil
+        ctrlAccueil.getVue().setVisible(true);
     }
-
     
-
-
-    public CtrlListeEtudiants getCtrlListeClients() {
-        return ctrlListeEtudiants;
-    }
-
-    public void setCtrlListeClients(CtrlListeEtudiants ctrlListeEtudiants) {
-        this.ctrlListeEtudiants = ctrlListeEtudiants;
-    }
-
     public EntityManager getEntityManager() {
         return entityManager;
     }
@@ -76,4 +61,12 @@ public class CtrlPrincipal {
         this.entityManager = entityManager;
     }
 
+    public CtrlAccueil getCtrlAccueil() {
+        return ctrlAccueil;
+    }
+
+    public void setCtrlAccueil(CtrlAccueil ctrlAccueil) {
+        this.ctrlAccueil = ctrlAccueil;
+    }
+    
 }
