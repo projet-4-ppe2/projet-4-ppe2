@@ -5,17 +5,24 @@
  */
 package vue;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author maxen
  */
 public class JFrameStage extends javax.swing.JFrame {
 
+        private DefaultTableModel modeleTableStages;
+
     /**
      * Creates new form JFrameEtudiant
      */
     public JFrameStage() {
         initComponents();
+        modeleTableStages = new DefaultTableModel();
+        jTableRecherche.setModel(modeleTableStages);
     }
 
     /**
@@ -203,6 +210,10 @@ public class JFrameStage extends javax.swing.JFrame {
         });
     }
 
+
+    public DefaultTableModel getModeleTableStages() {
+        return modeleTableStages;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreer;
