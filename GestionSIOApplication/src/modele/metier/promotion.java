@@ -1,4 +1,4 @@
-package modele.gestion_sio;
+package modele.metier;
 
 
 public class promotion {

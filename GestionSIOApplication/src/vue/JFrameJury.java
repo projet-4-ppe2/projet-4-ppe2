@@ -5,7 +5,9 @@
  */
 package vue;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,11 +15,15 @@ import javax.swing.JTable;
  */
 public class JFrameJury extends javax.swing.JFrame {
 
+    private DefaultTableModel modeleTableJury;
+
     /**
      * Creates new form JFrameEtudiant
      */
     public JFrameJury() {
         initComponents();
+        modeleTableJury = new DefaultTableModel();
+        jTableRecherche.setModel(modeleTableJury);
     }
 
     /**
@@ -103,7 +109,7 @@ public class JFrameJury extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nom", "Entreprise", "Etudiant", "Date"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane3.setViewportView(jTableRecherche);
@@ -204,10 +210,15 @@ public class JFrameJury extends javax.swing.JFrame {
             }
         });
     }
-    
-    public JTable getjTableListeJury() {
-        return jTableRecherche;
+
+   public DefaultTableModel getModeleTableJurys() {
+        return modeleTableJury;
     }
+
+    public void setModeleTableJurys(DefaultTableModel modeleTableJury) {
+        this.modeleTableJury = modeleTableJury;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreer;

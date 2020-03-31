@@ -11,30 +11,24 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import vue.JFrameEtudiant;
 import vue.JFrameJury;
-import modele.Professeur;
-import modele.Visite;
-import modele.Stage;
 
 /**
  *
- * @author MrE1
+ * @author Alexandre
  */
-public class CtrlListeJury implements WindowListener, ActionListener, MouseListener {
-    
-    private JFrameJury vue;         // LA VUE
+public class CtrlEtudiant implements WindowListener, ActionListener, MouseListener  {
+
+    private JFrameEtudiant vue;         // LA VUE
     private CtrlPrincipal ctrlPrincipal;
     
-    /**
-     * Remplit le modèle de JTable de la vue avec les données provenant de la liste des clients
-     */
-    public void afficherLeJury() {
-         // Affichage de la liste des clients
-        vue.getjTableListeJury().clear();
-        for (Visite vis : lesVisites) {
-            vue.getjTableListeJury().addRow(vis);
-        }
-
+    public CtrlEtudiant(JFrameEtudiant vue, CtrlPrincipal ctrl) {
+        this.vue = vue;
+        this.ctrlPrincipal = ctrl;
+        // le contrôleur écoute la vue
+        this.vue.addWindowListener(this);
+        this.vue.getjTableListeEtudiants().addMouseListener(this);
     }
 
     @Override
@@ -47,12 +41,10 @@ public class CtrlListeJury implements WindowListener, ActionListener, MouseListe
 
     @Override
     public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -85,12 +77,27 @@ public class CtrlListeJury implements WindowListener, ActionListener, MouseListe
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    // ACCESSEURS et MUTATEURS
+    public JFrameEtudiant getVue() {
+        return vue;
+    }
+
+    public void setVue(JFrameEtudiant vue) {
+        this.vue = vue;
+    }
+
+    public CtrlPrincipal getCtrlPrincipal() {
+        return ctrlPrincipal;
+    }
+
+    public void setCtrlPrincipal(CtrlPrincipal ctrlPrincipal) {
+        this.ctrlPrincipal = ctrlPrincipal;
+    }
+
 }

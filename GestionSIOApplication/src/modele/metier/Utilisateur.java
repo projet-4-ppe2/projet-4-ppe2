@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele.gestion_sio;
+package modele.metier;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,11 +24,13 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "professeur")
+@Table(name = "utilisateur")
 @NamedQueries({
-    @NamedQuery(name = "Professeur.findAll", query = "SELECT p FROM Professeur p"),
-    @NamedQuery(name = "Professeur.findById", query = "SELECT p FROM Professeur p WHERE p.id = :id")})
-public class Professeur implements Serializable {
+    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u"),
+    @NamedQuery(name = "Utilisateur.findById", query = "SELECT u FROM Utilisateur u WHERE u.id = :id"),
+    @NamedQuery(name = "Utilisateur.findByPseudo", query = "SELECT u FROM Utilisateur u WHERE u.pseudo = :pseudo"),
+    @NamedQuery(name = "Utilisateur.findByRole", query = "SELECT u FROM Utilisateur u WHERE u.role = :role")})
+public class Utilisateur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,17 +38,32 @@ public class Professeur implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesseur")
-    private Collection<Visite> visiteCollection;
+    @Basic(optional = false)
+    @Column(name = "pseudo")
+    private String pseudo;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "mot_de_passe")
+    private String motDePasse;
+    @Basic(optional = false)
+    @Column(name = "role")
+    private boolean role;
     @JoinColumn(name = "id_personne", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Personne idPersonne;
 
-    public Professeur() {
+    public Utilisateur() {
     }
 
-    public Professeur(Integer id) {
+    public Utilisateur(Integer id) {
         this.id = id;
+    }
+
+    public Utilisateur(Integer id, String pseudo, String motDePasse, boolean role) {
+        this.id = id;
+        this.pseudo = pseudo;
+        this.motDePasse = motDePasse;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -59,12 +74,28 @@ public class Professeur implements Serializable {
         this.id = id;
     }
 
-    public Collection<Visite> getVisiteCollection() {
-        return visiteCollection;
+    public String getPseudo() {
+        return pseudo;
     }
 
-    public void setVisiteCollection(Collection<Visite> visiteCollection) {
-        this.visiteCollection = visiteCollection;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+
+    public boolean getRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
     }
 
     public Personne getIdPersonne() {
@@ -85,10 +116,10 @@ public class Professeur implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Professeur)) {
+        if (!(object instanceof Utilisateur)) {
             return false;
         }
-        Professeur other = (Professeur) object;
+        Utilisateur other = (Utilisateur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -97,7 +128,7 @@ public class Professeur implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Professeur[ id=" + id + " ]";
+        return "Classes.Utilisateur[ id=" + id + " ]";
     }
     
 }

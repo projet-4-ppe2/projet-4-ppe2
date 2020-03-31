@@ -6,7 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import controleur.CtrlAccueil;
-import modele.gestion_sio.Etudiant;
+import modele.metier.Etudiant;
 
 /**
  * Le contrôleur principal est chargé de gérer les changement de vue Il propose

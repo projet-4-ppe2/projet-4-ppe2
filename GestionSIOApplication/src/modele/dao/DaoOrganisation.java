@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package modele.dao;
 
+import dao.Jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import modele.Organisation;
+import modele.metier.Organisation;
 import java.util.List;
 
 /**
  *
- * @author Justin
+ * @author Justine
  */
 public class DaoOrganisation{
     

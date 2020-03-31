@@ -2,7 +2,7 @@ package controleur;
 
 import java.awt.event.*;
 import java.util.List;
-import modele.gestion_sio.*;
+import modele.metier.*;
 import gui.JFrameListeEtudiants;
 
 /**

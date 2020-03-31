@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele.gestion_sio;
+package modele.metier;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -15,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,12 +26,13 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "etudiant")
+@Table(name = "professionnel")
 @NamedQueries({
-    @NamedQuery(name = "Etudiant.findAll", query = "SELECT e FROM Etudiant e"),
-    @NamedQuery(name = "Etudiant.findById", query = "SELECT e FROM Etudiant e WHERE e.id = :id"),
-    @NamedQuery(name = "Etudiant.findByIdStage", query = "SELECT e FROM Etudiant e WHERE e.idStage = :idStage")})
-public class Etudiant implements Serializable {
+    @NamedQuery(name = "Professionnel.findAll", query = "SELECT p FROM Professionnel p"),
+    @NamedQuery(name = "Professionnel.findById", query = "SELECT p FROM Professionnel p WHERE p.id = :id"),
+    @NamedQuery(name = "Professionnel.findByAncienEleve", query = "SELECT p FROM Professionnel p WHERE p.ancienEleve = :ancienEleve"),
+    @NamedQuery(name = "Professionnel.findByFonction", query = "SELECT p FROM Professionnel p WHERE p.fonction = :fonction")})
+public class Professionnel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,32 +41,28 @@ public class Etudiant implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "id_stage")
-    private int idStage;
-    @JoinTable(name = "promotion", joinColumns = {
-        @JoinColumn(name = "id_etudiant", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_annee", referencedColumnName = "id")})
-    @ManyToMany
-    private Collection<Annee> anneeCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEtudiant")
-    private Collection<Stage> stageCollection;
+    @Column(name = "ancien_eleve")
+    private boolean ancienEleve;
+    @Basic(optional = false)
+    @Column(name = "fonction")
+    private String fonction;
     @JoinColumn(name = "id_personne", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Personne idPersonne;
-    @JoinColumn(name = "id_annee", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Annee idAnnee;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfessionnel")
+    private Collection<Stage> stageCollection;
 
-    public Etudiant() {
+    public Professionnel() {
     }
 
-    public Etudiant(Integer id) {
+    public Professionnel(Integer id) {
         this.id = id;
     }
 
-    public Etudiant(Integer id, int idStage) {
+    public Professionnel(Integer id, boolean ancienEleve, String fonction) {
         this.id = id;
-        this.idStage = idStage;
+        this.ancienEleve = ancienEleve;
+        this.fonction = fonction;
     }
 
     public Integer getId() {
@@ -78,28 +73,20 @@ public class Etudiant implements Serializable {
         this.id = id;
     }
 
-    public int getIdStage() {
-        return idStage;
+    public boolean getAncienEleve() {
+        return ancienEleve;
     }
 
-    public void setIdStage(int idStage) {
-        this.idStage = idStage;
+    public void setAncienEleve(boolean ancienEleve) {
+        this.ancienEleve = ancienEleve;
     }
 
-    public Collection<Annee> getAnneeCollection() {
-        return anneeCollection;
+    public String getFonction() {
+        return fonction;
     }
 
-    public void setAnneeCollection(Collection<Annee> anneeCollection) {
-        this.anneeCollection = anneeCollection;
-    }
-
-    public Collection<Stage> getStageCollection() {
-        return stageCollection;
-    }
-
-    public void setStageCollection(Collection<Stage> stageCollection) {
-        this.stageCollection = stageCollection;
+    public void setFonction(String fonction) {
+        this.fonction = fonction;
     }
 
     public Personne getIdPersonne() {
@@ -110,12 +97,12 @@ public class Etudiant implements Serializable {
         this.idPersonne = idPersonne;
     }
 
-    public Annee getIdAnnee() {
-        return idAnnee;
+    public Collection<Stage> getStageCollection() {
+        return stageCollection;
     }
 
-    public void setIdAnnee(Annee idAnnee) {
-        this.idAnnee = idAnnee;
+    public void setStageCollection(Collection<Stage> stageCollection) {
+        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -128,10 +115,10 @@ public class Etudiant implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Etudiant)) {
+        if (!(object instanceof Professionnel)) {
             return false;
         }
-        Etudiant other = (Etudiant) object;
+        Professionnel other = (Professionnel) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -140,7 +127,7 @@ public class Etudiant implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Etudiant[ id=" + id + " ]";
+        return "Classes.Professionnel[ id=" + id + " ]";
     }
     
 }

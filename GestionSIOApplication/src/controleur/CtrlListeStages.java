@@ -14,10 +14,10 @@ import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import modele.Stage;
-import modele.Organisation;
+import modele.metier.Stage;
+import modele.metier.Organisation;
 import vue.JFrameStage;
-import dao.DaoStage;
+import modele.dao.DaoStage;
 
 /**
  *

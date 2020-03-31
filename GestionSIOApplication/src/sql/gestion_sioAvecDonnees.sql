@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `id_stage` int(11) DEFAULT NULL,
   `id_annee` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  KEY `fk_stage` (`id_stage`),
   KEY `fk_personne` (`id_personne`),
   KEY `fk_annee` (`id_annee`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
@@ -201,7 +202,7 @@ INSERT INTO `promotion` (`id_etudiant`, `id_annee`, `option`) VALUES
 DROP TABLE IF EXISTS `stage`;
 CREATE TABLE IF NOT EXISTS `stage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_etudiant` int(11) NULL,
+  `id_etudiant` int(11) NOT NULL,
   `id_professionnel` int(11) NOT NULL,
   `id_organisation` int(11) NOT NULL,
   `debut` date NOT NULL,
@@ -218,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `stage` (
 --
 
 INSERT INTO `stage` (`id`, `id_etudiant`, `id_professionnel`, `id_organisation`, `debut`, `fin`, `sujet`) VALUES
-(1, 1, 1, 1, '2020-01-06', '2020-02-21', "Developpement d\'une solution web");
+(1, 1, 1, 1, '2020-01-06', '2020-02-21', "Developpement d'une solution web");
 
 -- --------------------------------------------------------
 

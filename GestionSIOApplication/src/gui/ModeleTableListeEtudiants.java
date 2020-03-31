@@ -2,7 +2,7 @@ package gui;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import modele.gestion_sio.Etudiant;
+import modele.metier.Etudiant;
 
 /**
  * Modèle de données pour le composant JTable de la vue JFrameListeClients

@@ -5,7 +5,7 @@
  */
 package gui;
 
-import modele.gestion_sio.Etudiant;
+import modele.metier.Etudiant;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

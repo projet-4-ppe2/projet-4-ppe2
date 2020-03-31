@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package modele.metier;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -30,8 +30,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "etudiant")
 @NamedQueries({
-    @NamedQuery(name = "Etudiant.findAll", query = "SELECT e FROM Etudiant e"),
-    @NamedQuery(name = "Etudiant.findById", query = "SELECT e FROM Etudiant e WHERE e.id = :id"),
+    @NamedQuery(name = "Etudiant.findAll", query = "SELECT e FROM Etudiant e")
+    ,
+    @NamedQuery(name = "Etudiant.findById", query = "SELECT e FROM Etudiant e WHERE e.id = :id")
+    ,
     @NamedQuery(name = "Etudiant.findByIdStage", query = "SELECT e FROM Etudiant e WHERE e.idStage = :idStage")})
 public class Etudiant implements Serializable {
 
@@ -57,9 +59,8 @@ public class Etudiant implements Serializable {
     @JoinColumn(name = "id_annee", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Annee idAnnee;
-    @JoinColumn(name = "id_option", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Option idOption;
+    
+   
 
     public Etudiant() {
     }
@@ -121,13 +122,6 @@ public class Etudiant implements Serializable {
         this.idAnnee = idAnnee;
     }
 
-    public Option getIdOption() {
-        return idOption;
-    }
-
-    public void setIdOption(Option idOption) {
-        this.idOption = idOption;
-    }
 
     @Override
     public int hashCode() {
@@ -153,5 +147,5 @@ public class Etudiant implements Serializable {
     public String toString() {
         return "Classes.Etudiant[ id=" + id + " ]";
     }
-    
+
 }
