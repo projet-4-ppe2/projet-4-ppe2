@@ -129,6 +129,7 @@ public class JFrameProfesseur extends javax.swing.JFrame {
 
     private void jButtonJuryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJuryActionPerformed
         JFrameJury JFrameJ = new JFrameJury();
+        JFrameJ.setLocationRelativeTo(null);
         JFrameJ.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -136,6 +137,7 @@ public class JFrameProfesseur extends javax.swing.JFrame {
 
     private void jButtonStageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStageActionPerformed
         JFrameStage JFrameS = new JFrameStage();
+        JFrameS.setLocationRelativeTo(null);
         JFrameS.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -143,6 +145,7 @@ public class JFrameProfesseur extends javax.swing.JFrame {
 
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
         JFrameAccueil JFrameA = new JFrameAccueil();
+        JFrameA.setLocationRelativeTo(null);
         JFrameA.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);

@@ -5,20 +5,16 @@
  */
 package Main;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import gui.JFrameAccueil;
-import gui.JFrameAdministrateur;
-import gui.JFrameListeEtudiants;
 
 import controleur.CtrlPrincipal;
 import controleur.CtrlAccueil;
 
-import modele.gestion_sio.Etudiant;
 
 /**
  *

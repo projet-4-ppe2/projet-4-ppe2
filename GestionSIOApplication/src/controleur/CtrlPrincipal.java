@@ -50,6 +50,7 @@ public class CtrlPrincipal {
      */
     public void afficherAccueil() {
         // Accueil
+        ctrlAccueil.getVue().setLocationRelativeTo(null);
         ctrlAccueil.getVue().setVisible(true);
     }
     

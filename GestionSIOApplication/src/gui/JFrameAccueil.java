@@ -97,6 +97,7 @@ public class JFrameAccueil extends javax.swing.JFrame {
 
     private void jButtonEtudiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEtudiantActionPerformed
         JFrameListeEtudiants JFrameE= new JFrameListeEtudiants();
+        JFrameE.setLocationRelativeTo(null);
         JFrameE.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -105,6 +106,7 @@ public class JFrameAccueil extends javax.swing.JFrame {
 
     private void jButtonProfesseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfesseurActionPerformed
         JFrameProfesseur JFrameP= new JFrameProfesseur();
+        JFrameP.setLocationRelativeTo(null);
         JFrameP.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -112,6 +114,7 @@ public class JFrameAccueil extends javax.swing.JFrame {
 
     private void jButtonAdministrateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrateurActionPerformed
         JFrameAdministrateur JFrameA = new JFrameAdministrateur();
+        JFrameA.setLocationRelativeTo(null);
         JFrameA.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);

@@ -156,6 +156,7 @@ public class JFrameJury extends javax.swing.JFrame {
 
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
         JFrameProfesseur JFrameP = new JFrameProfesseur();
+        JFrameP.setLocationRelativeTo(null);
         JFrameP.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);

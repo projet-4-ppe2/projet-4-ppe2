@@ -175,6 +175,7 @@ public class JFrameListeEtudiants extends javax.swing.JFrame {
 
     private void jButtonRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetourActionPerformed
         JFrameAccueil JFrameA = new JFrameAccueil();
+        JFrameA.setLocationRelativeTo(null);
         JFrameA.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
