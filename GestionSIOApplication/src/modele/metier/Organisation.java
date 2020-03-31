@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package modele.metier;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,7 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,14 +24,13 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "annee")
+@Table(name = "organisation")
 @NamedQueries({
-    @NamedQuery(name = "Annee.findAll", query = "SELECT a FROM Annee a")
-    ,
-    @NamedQuery(name = "Annee.findById", query = "SELECT a FROM Annee a WHERE a.id = :id")
-    ,
-    @NamedQuery(name = "Annee.findByAnnee", query = "SELECT a FROM Annee a WHERE a.annee = :annee")})
-public class Annee implements Serializable {
+    @NamedQuery(name = "Organisation.findAll", query = "SELECT o FROM Organisation o"),
+    @NamedQuery(name = "Organisation.findById", query = "SELECT o FROM Organisation o WHERE o.id = :id"),
+    @NamedQuery(name = "Organisation.findByNom", query = "SELECT o FROM Organisation o WHERE o.nom = :nom"),
+    @NamedQuery(name = "Organisation.findByAdresse", query = "SELECT o FROM Organisation o WHERE o.adresse = :adresse")})
+public class Organisation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,23 +39,25 @@ public class Annee implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "annee")
-    private String annee;
-    @ManyToMany(mappedBy = "anneeCollection")
-    private Collection<Etudiant> etudiantCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnnee")
-    private Collection<Etudiant> etudiantCollection1;
+    @Column(name = "nom")
+    private String nom;
+    @Basic(optional = false)
+    @Column(name = "adresse")
+    private String adresse;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOrganisation")
+    private Collection<Stage> stageCollection;
 
-    public Annee() {
+    public Organisation() {
     }
 
-    public Annee(Integer id) {
+    public Organisation(Integer id) {
         this.id = id;
     }
 
-    public Annee(Integer id, String annee) {
+    public Organisation(Integer id, String nom, String adresse) {
         this.id = id;
-        this.annee = annee;
+        this.nom = nom;
+        this.adresse = adresse;
     }
 
     public Integer getId() {
@@ -68,28 +68,28 @@ public class Annee implements Serializable {
         this.id = id;
     }
 
-    public String getAnnee() {
-        return annee;
+    public String getNom() {
+        return nom;
     }
 
-    public void setAnnee(String annee) {
-        this.annee = annee;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public Collection<Etudiant> getEtudiantCollection() {
-        return etudiantCollection;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setEtudiantCollection(Collection<Etudiant> etudiantCollection) {
-        this.etudiantCollection = etudiantCollection;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
-    public Collection<Etudiant> getEtudiantCollection1() {
-        return etudiantCollection1;
+    public Collection<Stage> getStageCollection() {
+        return stageCollection;
     }
 
-    public void setEtudiantCollection1(Collection<Etudiant> etudiantCollection1) {
-        this.etudiantCollection1 = etudiantCollection1;
+    public void setStageCollection(Collection<Stage> stageCollection) {
+        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -102,10 +102,10 @@ public class Annee implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Annee)) {
+        if (!(object instanceof Organisation)) {
             return false;
         }
-        Annee other = (Annee) object;
+        Organisation other = (Organisation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +114,7 @@ public class Annee implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Annee[ id=" + id + " ]";
+        return "Classes.Organisation[ id=" + id + " ]";
     }
-
+    
 }

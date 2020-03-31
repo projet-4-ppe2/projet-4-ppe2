@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package modele.metier;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -26,13 +26,11 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "professionnel")
+@Table(name = "professeur")
 @NamedQueries({
-    @NamedQuery(name = "Professionnel.findAll", query = "SELECT p FROM Professionnel p"),
-    @NamedQuery(name = "Professionnel.findById", query = "SELECT p FROM Professionnel p WHERE p.id = :id"),
-    @NamedQuery(name = "Professionnel.findByAncienEleve", query = "SELECT p FROM Professionnel p WHERE p.ancienEleve = :ancienEleve"),
-    @NamedQuery(name = "Professionnel.findByFonction", query = "SELECT p FROM Professionnel p WHERE p.fonction = :fonction")})
-public class Professionnel implements Serializable {
+    @NamedQuery(name = "Professeur.findAll", query = "SELECT p FROM Professeur p"),
+    @NamedQuery(name = "Professeur.findById", query = "SELECT p FROM Professeur p WHERE p.id = :id")})
+public class Professeur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,29 +38,17 @@ public class Professionnel implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "ancien_eleve")
-    private boolean ancienEleve;
-    @Basic(optional = false)
-    @Column(name = "fonction")
-    private String fonction;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesseur")
+    private Collection<Visite> visiteCollection;
     @JoinColumn(name = "id_personne", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Personne idPersonne;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfessionnel")
-    private Collection<Stage> stageCollection;
 
-    public Professionnel() {
+    public Professeur() {
     }
 
-    public Professionnel(Integer id) {
+    public Professeur(Integer id) {
         this.id = id;
-    }
-
-    public Professionnel(Integer id, boolean ancienEleve, String fonction) {
-        this.id = id;
-        this.ancienEleve = ancienEleve;
-        this.fonction = fonction;
     }
 
     public Integer getId() {
@@ -73,20 +59,12 @@ public class Professionnel implements Serializable {
         this.id = id;
     }
 
-    public boolean getAncienEleve() {
-        return ancienEleve;
+    public Collection<Visite> getVisiteCollection() {
+        return visiteCollection;
     }
 
-    public void setAncienEleve(boolean ancienEleve) {
-        this.ancienEleve = ancienEleve;
-    }
-
-    public String getFonction() {
-        return fonction;
-    }
-
-    public void setFonction(String fonction) {
-        this.fonction = fonction;
+    public void setVisiteCollection(Collection<Visite> visiteCollection) {
+        this.visiteCollection = visiteCollection;
     }
 
     public Personne getIdPersonne() {
@@ -95,14 +73,6 @@ public class Professionnel implements Serializable {
 
     public void setIdPersonne(Personne idPersonne) {
         this.idPersonne = idPersonne;
-    }
-
-    public Collection<Stage> getStageCollection() {
-        return stageCollection;
-    }
-
-    public void setStageCollection(Collection<Stage> stageCollection) {
-        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -115,10 +85,10 @@ public class Professionnel implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Professionnel)) {
+        if (!(object instanceof Professeur)) {
             return false;
         }
-        Professionnel other = (Professionnel) object;
+        Professeur other = (Professeur) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -127,7 +97,7 @@ public class Professionnel implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Professionnel[ id=" + id + " ]";
+        return "Classes.Professeur[ id=" + id + " ]";
     }
     
 }

@@ -5,7 +5,7 @@
  */
 package vue;
 
-import modele.Etudiant;
+import modele.metier.Etudiant;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

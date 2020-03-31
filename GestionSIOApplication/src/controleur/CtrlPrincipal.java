@@ -5,9 +5,11 @@
  */
 package controleur;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import modele.metier.Visite;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
 public class CtrlPrincipal {
     
     EntityManager entityManager = null;
+    CtrlListeJury ctrlListeJury = null;
     
     // PROCEDURES APPELEES PAR LES CONTROLEURS PARTICULIERS
     /**
@@ -34,6 +37,30 @@ public class CtrlPrincipal {
         }
         // mettre fin à l'application
         System.exit(0);
+    }
+
+    public CtrlListeJury getCtrlListeJury() {
+        return ctrlListeJury;
+    }
+    
+    public void setCtrlListeJury(CtrlListeJury ctrlListeJury) {
+        this.ctrlListeJury = ctrlListeJury;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+    
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public void afficherLeJury(List<Visite> desJurys) {
+        ctrlListeJury.setLesJurys(desJurys);
+        ctrlListeJury.afficherLeJury();
+        ctrlListeJury.getVue().setVisible(true);
+        ctrlListeJury.getVue().setEnabled(true);
+        ctrlListeJury.getVue().getjTableListeJury().setEnabled(false);
     }
     
     

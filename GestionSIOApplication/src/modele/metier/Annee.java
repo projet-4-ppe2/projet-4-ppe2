@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package modele.metier;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,12 +25,14 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "option")
+@Table(name = "annee")
 @NamedQueries({
-    @NamedQuery(name = "Option.findAll", query = "SELECT o FROM Option o"),
-    @NamedQuery(name = "Option.findById", query = "SELECT o FROM Option o WHERE o.id = :id"),
-    @NamedQuery(name = "Option.findByLibelle", query = "SELECT o FROM Option o WHERE o.libelle = :libelle")})
-public class Option implements Serializable {
+    @NamedQuery(name = "Annee.findAll", query = "SELECT a FROM Annee a")
+    ,
+    @NamedQuery(name = "Annee.findById", query = "SELECT a FROM Annee a WHERE a.id = :id")
+    ,
+    @NamedQuery(name = "Annee.findByAnnee", query = "SELECT a FROM Annee a WHERE a.annee = :annee")})
+public class Annee implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,21 +41,23 @@ public class Option implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "libelle")
-    private String libelle;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOption")
+    @Column(name = "annee")
+    private String annee;
+    @ManyToMany(mappedBy = "anneeCollection")
     private Collection<Etudiant> etudiantCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnnee")
+    private Collection<Etudiant> etudiantCollection1;
 
-    public Option() {
+    public Annee() {
     }
 
-    public Option(Integer id) {
+    public Annee(Integer id) {
         this.id = id;
     }
 
-    public Option(Integer id, String libelle) {
+    public Annee(Integer id, String annee) {
         this.id = id;
-        this.libelle = libelle;
+        this.annee = annee;
     }
 
     public Integer getId() {
@@ -63,12 +68,12 @@ public class Option implements Serializable {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public String getAnnee() {
+        return annee;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
+    public void setAnnee(String annee) {
+        this.annee = annee;
     }
 
     public Collection<Etudiant> getEtudiantCollection() {
@@ -77,6 +82,14 @@ public class Option implements Serializable {
 
     public void setEtudiantCollection(Collection<Etudiant> etudiantCollection) {
         this.etudiantCollection = etudiantCollection;
+    }
+
+    public Collection<Etudiant> getEtudiantCollection1() {
+        return etudiantCollection1;
+    }
+
+    public void setEtudiantCollection1(Collection<Etudiant> etudiantCollection1) {
+        this.etudiantCollection1 = etudiantCollection1;
     }
 
     @Override
@@ -89,10 +102,10 @@ public class Option implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Option)) {
+        if (!(object instanceof Annee)) {
             return false;
         }
-        Option other = (Option) object;
+        Annee other = (Annee) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -101,7 +114,7 @@ public class Option implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Option[ id=" + id + " ]";
+        return "Classes.Annee[ id=" + id + " ]";
     }
-    
+
 }

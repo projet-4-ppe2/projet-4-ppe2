@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package modele.metier;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,13 +26,13 @@ import javax.persistence.Table;
  * @author maxen
  */
 @Entity
-@Table(name = "utilisateur")
+@Table(name = "professionnel")
 @NamedQueries({
-    @NamedQuery(name = "Utilisateur.findAll", query = "SELECT u FROM Utilisateur u"),
-    @NamedQuery(name = "Utilisateur.findById", query = "SELECT u FROM Utilisateur u WHERE u.id = :id"),
-    @NamedQuery(name = "Utilisateur.findByPseudo", query = "SELECT u FROM Utilisateur u WHERE u.pseudo = :pseudo"),
-    @NamedQuery(name = "Utilisateur.findByRole", query = "SELECT u FROM Utilisateur u WHERE u.role = :role")})
-public class Utilisateur implements Serializable {
+    @NamedQuery(name = "Professionnel.findAll", query = "SELECT p FROM Professionnel p"),
+    @NamedQuery(name = "Professionnel.findById", query = "SELECT p FROM Professionnel p WHERE p.id = :id"),
+    @NamedQuery(name = "Professionnel.findByAncienEleve", query = "SELECT p FROM Professionnel p WHERE p.ancienEleve = :ancienEleve"),
+    @NamedQuery(name = "Professionnel.findByFonction", query = "SELECT p FROM Professionnel p WHERE p.fonction = :fonction")})
+public class Professionnel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,31 +41,28 @@ public class Utilisateur implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "pseudo")
-    private String pseudo;
+    @Column(name = "ancien_eleve")
+    private boolean ancienEleve;
     @Basic(optional = false)
-    @Lob
-    @Column(name = "mot_de_passe")
-    private String motDePasse;
-    @Basic(optional = false)
-    @Column(name = "role")
-    private boolean role;
+    @Column(name = "fonction")
+    private String fonction;
     @JoinColumn(name = "id_personne", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Personne idPersonne;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfessionnel")
+    private Collection<Stage> stageCollection;
 
-    public Utilisateur() {
+    public Professionnel() {
     }
 
-    public Utilisateur(Integer id) {
+    public Professionnel(Integer id) {
         this.id = id;
     }
 
-    public Utilisateur(Integer id, String pseudo, String motDePasse, boolean role) {
+    public Professionnel(Integer id, boolean ancienEleve, String fonction) {
         this.id = id;
-        this.pseudo = pseudo;
-        this.motDePasse = motDePasse;
-        this.role = role;
+        this.ancienEleve = ancienEleve;
+        this.fonction = fonction;
     }
 
     public Integer getId() {
@@ -74,28 +73,20 @@ public class Utilisateur implements Serializable {
         this.id = id;
     }
 
-    public String getPseudo() {
-        return pseudo;
+    public boolean getAncienEleve() {
+        return ancienEleve;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
+    public void setAncienEleve(boolean ancienEleve) {
+        this.ancienEleve = ancienEleve;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getFonction() {
+        return fonction;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
-
-    public boolean getRole() {
-        return role;
-    }
-
-    public void setRole(boolean role) {
-        this.role = role;
+    public void setFonction(String fonction) {
+        this.fonction = fonction;
     }
 
     public Personne getIdPersonne() {
@@ -104,6 +95,14 @@ public class Utilisateur implements Serializable {
 
     public void setIdPersonne(Personne idPersonne) {
         this.idPersonne = idPersonne;
+    }
+
+    public Collection<Stage> getStageCollection() {
+        return stageCollection;
+    }
+
+    public void setStageCollection(Collection<Stage> stageCollection) {
+        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -116,10 +115,10 @@ public class Utilisateur implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Utilisateur)) {
+        if (!(object instanceof Professionnel)) {
             return false;
         }
-        Utilisateur other = (Utilisateur) object;
+        Professionnel other = (Professionnel) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,7 +127,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Utilisateur[ id=" + id + " ]";
+        return "Classes.Professionnel[ id=" + id + " ]";
     }
     
 }

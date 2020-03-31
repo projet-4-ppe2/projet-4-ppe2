@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package modele.dao;
 
 /**
  *
- * @author Alexandre
+ * @author MrE1
  */
-
-public class EtudiantDAO {
+public class DaoProf {
     
 }
