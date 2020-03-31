@@ -57,9 +57,6 @@ public class Etudiant implements Serializable {
     @JoinColumn(name = "id_annee", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Annee idAnnee;
-    @JoinColumn(name = "id_option", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Option idOption;
 
     public Etudiant() {
     }
@@ -119,14 +116,6 @@ public class Etudiant implements Serializable {
 
     public void setIdAnnee(Annee idAnnee) {
         this.idAnnee = idAnnee;
-    }
-
-    public Option getIdOption() {
-        return idOption;
-    }
-
-    public void setIdOption(Option idOption) {
-        this.idOption = idOption;
     }
 
     @Override

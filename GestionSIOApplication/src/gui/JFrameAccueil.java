@@ -96,7 +96,7 @@ public class JFrameAccueil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEtudiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEtudiantActionPerformed
-        JFrameEtudiant JFrameE= new JFrameEtudiant();
+        JFrameListeEtudiants JFrameE= new JFrameListeEtudiants();
         JFrameE.setVisible(true);
         this.setVisible(false);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);

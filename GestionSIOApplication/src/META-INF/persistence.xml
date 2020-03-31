@@ -5,7 +5,6 @@
     <class>modele.gestion_sio.Visite</class>
     <class>modele.gestion_sio.Utilisateur</class>
     <class>modele.gestion_sio.Etudiant</class>
-    <class>modele.gestion_sio.Option</class>
     <class>modele.gestion_sio.Professionnel</class>
     <class>modele.gestion_sio.Professeur</class>
     <class>modele.gestion_sio.Stage</class>
@@ -13,7 +12,7 @@
     <class>modele.gestion_sio.Personne</class>
     <class>modele.gestion_sio.Annee</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestion_sio?zeroDateTimeBehavior=convertToNull&amp;serverTimezone=Europe/Paris"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestion_sio?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="gestion_sio_user"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="secret"/>
@@ -21,4 +20,3 @@
     </properties>
   </persistence-unit>
 </persistence>
- 
